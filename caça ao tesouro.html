@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 20px;
+        }
+        #game-area { 
+            margin-top: 50px; 
+        }
+        .hidden { 
+            display: none; 
+        }
+        img { 
+            max-width: 300px; 
+            margin: 20px auto; 
+            display: block;
+        }
+        button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Caça ao Tesouro!</h1>
+    <p>Resolva as pistas para encontrar o tesouro.</p>
+    <div id="game-area">
+        <!-- Etapa 1 -->
+        <div id="step-1">
+            <p><strong>Pista 1:</strong></p>
+            <img src="image1.jpg" alt="Livro" id="image-1">
+            <p>11-20-03</p>
+            <input type="text" id="answer-1" placeholder="Digite a senha">
+            <button onclick="checkStep(1, 'muito')">Enviar Resposta</button>
+        </div>
+        <!-- Etapa 2 -->
+        <div id="step-2" class="hidden">
+            <p><strong>Pista 2:</strong></p>
+            <img src="image2.jpg" alt="Imagem 2" id="image-2">
+            <p>43-07-01</p>
+            <input type="text" id="answer-2" placeholder="Digite a senha">
+            <button onclick="checkStep(2, 'obrigado')">Enviar Resposta</button>
+        </div>
+        <!-- Etapa 3 -->
+        <div id="step-3" class="hidden">
+            <p><strong>Pista 3:</strong></p>
+            <img src="image3.jpg" alt="Imagem 3" id="image-3">
+            <p>06-22-02</p>
+            <input type="text" id="answer-3" placeholder="Digite a senha">
+            <button onclick="checkStep(3, 'por')">Enviar Resposta</button>
+        </div>
+        <!-- Etapa 4 -->
+        <div id="step-4" class="hidden">
+            <p><strong>Pista 4:</strong></p>
+            <img src="image4.jpg" alt="Imagem 4" id="image-4">
+            <p>26-32-08</p>
+            <input type="text" id="answer-4" placeholder="Digite a senha">
+            <button onclick="checkStep(4, 'serem')">Enviar Resposta</button>
+        </div>
+        <!-- Etapa 5 -->
+        <div id="step-5" class="hidden">
+            <p><strong>Pista 5:</strong></p>
+            <img src="image5.jpg" alt="Imagem 5" id="image-5">
+            <p>179-26-03</p>
+            <input type="text" id="answer-5" placeholder="Digite a senha">
+            <button onclick="checkStep(5, 'minha')">Enviar Resposta</button>
+        </div>
+        <!-- Etapa 6 -->
+        <div id="step-6" class="hidden">
+            <p><strong>Pista 6:</strong></p>
+            <img src="image6.jpg" alt="Imagem 6" id="image-6">
+            <p>11-29-03</p>
+            <input type="text" id="answer-6" placeholder="Digite a senha">
+            <button onclick="checkStep(6, 'família')">Enviar Resposta</button>
+        </div>
+    </div>
+    <!-- Tesouro -->
+    <div id="treasure" class="hidden">
+        <h2>Parabéns! Você encontrou o tesouro!</h2>
+        <p>Veja o vídeo do tesouro:</p>
+        <a href="https://www.youtube.com/watch?v=sfTEECS0W04" target="_blank">Clique aqui para assistir</a>
+    </div>
+
+    <script>
+        function checkStep(step, correctAnswer) {
+            const userInput = document.getElementById(`answer-${step}`).value.trim().toLowerCase();
+            if (userInput === correctAnswer) {
+                document.getElementById(`step-${step}`).classList.add('hidden');
+                const nextStep = document.getElementById(`step-${step + 1}`);
+                if (nextStep) {
+                    nextStep.classList.remove('hidden');
+                } else {
+                    document.getElementById('treasure').classList.remove('hidden');
+                }
+            } else {
+                alert("Resposta errada! Tente novamente.");
+            }
+        }
+    </script>
+</body>
+</html>
